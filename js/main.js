@@ -39,9 +39,37 @@ let material=new THREE.MeshBasicMaterial({color:'blue'});//color of the object
 let cube= new THREE.Mesh(geometry,material);
 scene.add(cube);
 
+//controls
+//event lisner when we press key
+document.addEventListener("keydown",onKeyDown,false);
+
+//function when key press execute this function
+
+function onKeyDown(event){
+    let keycode=event.which;
+
+    //Right arrow 
+    if(keycode===39){
+        camera.translateX(-0.05);
+    }
+    else if(keycode===37){
+        camera.translateX(0.05); 
+    }
+
+    else if(keycode===38){
+        camera.translateY(-0.05); 
+    }
+
+    else if(keycode===40){
+        camera.translateY(0.05); 
+    }
+
+}
+
+
 let render = function(){
-    cube.rotation.x=cube.rotation.x + 0.01;
-    cube.rotation.y=cube.rotation.y + 0.01;
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
     renderer.render(scene,camera);
     requestAnimationFrame(render);
 };
